@@ -1,0 +1,10 @@
+<launch>  
+   <group ns="firefly2">
+    <node name="waypoint_publisher" pkg="rotors_gazebo" type="waypoint_publisher" output="screen" args="0.5 1.35 0.38 0 1"/>
+  </group>
+   <group ns="firefly">
+    <node name="waypoint_publisher" pkg="rotors_gazebo" type="waypoint_publisher" output="screen" args="0.5 2.435 0.38 0 1"/>
+				<node pkg="rosservice" type="rosservice" name="" args="call on"/>
+  </group>
+
+</launch>

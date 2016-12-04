@@ -1,0 +1,27 @@
+<launch>
+
+
+
+  <group ns="firefly2">
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+    <node name="waypoint_publisher" pkg="rotors_gazebo" type="waypoint_publisher" output="screen" args="0.02 0 3 0 1"/>
+    <node name="hovering_example" pkg="rotors_gazebo" type="hovering_example" output="screen" args="a"/>
+
+  </group>
+
+  <group ns="firefly">
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+    <node name="waypoint_publisher" pkg="rotors_gazebo" type="waypoint_publisher" output="screen" args="1.02 0 3 0 1"/>
+    <node name="hovering_example" pkg="rotors_gazebo" type="hovering_example" output="screen" args="b"/>
+
+  </group>
+
+
+
+<!-- This launch file brings two hexrotors and one object to gazebo-->
+ <!-- This launch file calls the spawn_mav launch file which calls firefly xacro file controllers can be selected in spawn_mav file-->
+</launch>

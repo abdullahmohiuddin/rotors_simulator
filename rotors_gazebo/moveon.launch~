@@ -1,0 +1,34 @@
+<launch>
+
+  <group ns="firefly2">
+    <include file="$(find rotors_gazebo)/launch/spawn_mav2.launch">
+      <arg name="mav_name" value="firefly2" />
+      <arg name="model" value="$(find rotors_description)/urdf/mav_generic_odometry_sensor.gazebo" />
+      <arg name="enable_logging" value="$(arg enable_logging)" />
+      <arg name="enable_ground_truth" value="$(arg enable_ground_truth)" />
+      <arg name="log_file" value="firefly2"/>
+      <arg name="y" value="1.0"/>
+    </include>
+
+
+  </group>
+
+  <group ns="firefly">
+    <node name="lee_position_controller_node" pkg="rotors_control" type="lee_position_controller_node" output="screen" args="b">
+      <rosparam command="load" file="$(find rotors_gazebo)/resource/lee_controller_firefly.yaml" />
+      <rosparam command="load" file="$(find rotors_gazebo)/resource/firefly.yaml" />
+      <remap from="odometry" to="odometry_sensor1/odometry" />
+    </node>
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+    <node name="waypoint_publisher" pkg="rotors_gazebo" type="waypoint_publisher" output="screen" args="1.02 0 3 0 1"/>
+    <node name="hovering_example" pkg="rotors_gazebo" type="hovering_example" output="screen" args="b"/>
+
+  </group>
+
+
+
+<!-- This launch file brings two hexrotors and one object to gazebo-->
+ <!-- This launch file calls the spawn_mav launch file which calls firefly xacro file controllers can be selected in spawn_mav file-->
+</launch>
