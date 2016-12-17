@@ -66,12 +66,12 @@ popen("rosrun rotors_gazebo spawn_models.py", "r");}
 
 
   // Motion sequence of the first UAV.
-		while (ii<8) {
+		while (ii<12) {
 		//ros::Duration(7).sleep();
 sleep(9);
 		 if (ii==2) {
 	//bool onny = ros::service::call("/link_attacher_node/attach "model_name_1: 'firefly' link_name_1: 'left_end_effector' model_name_2: 'cube1' link_name_2: 'link'"", srv);
-popen("rosrun rotors_gazebo attach.py", "r");
+
 		//bool	onny2 = ros::service::call("/firefly2/on", srv);
 		//bool	onny2 = ros::service::call("/firefly2/on", srv);
 	}
@@ -104,9 +104,35 @@ sleep(2);
 					xx=0.02; yy=5 ; zz=3;
 }
 
+			if (ii==15) { 					
+     xx=1.02; yy=5 ; zz=3;
+}
+			if (ii==16) { 					
+     xx=2.02; yy=5 ; zz=3;
+}
+			if (ii==17) { 					
+     xx=2.02; yy=5.5 ; zz=3;
+}
+
+			if (ii==18) { 					
+     xx=2.02; yy=6 ; zz=3;
+}
+
+			if (ii==19) { 					
+     xx=2.02; yy=6.5 ; zz=3;
+}
+
+			if (ii==110) { 					
+     xx=2.02; yy=6.5 ; zz=2.5;
+}
+			if (ii==111) { 					
+     xx=2.02; yy=6.5 ; zz=2;
+}
+
+
 		ROS_INFO("Moving a"); }
 
-  // Motion sequence of the 2nd UAV.
+  // Motion sequence of the 2nd UAV
 
 		if (nameofuav=="b") { 
 		 if (ii==1) {
@@ -129,7 +155,22 @@ sleep(2);
      xx=3; yy=5 ; zz=3;
 }
 			if (ii==7) { 					
+     xx=3; yy=5.5 ; zz=3;
+}
+
+			if (ii==8) { 					
      xx=3; yy=6 ; zz=3;
+}
+
+			if (ii==9) { 					
+     xx=3; yy=6.5 ; zz=3;
+}
+
+			if (ii==10) { 					
+     xx=3; yy=6.5 ; zz=2.5;
+}
+			if (ii==11) { 					
+     xx=3; yy=6.5 ; zz=2;
 }
 
 		ROS_INFO("Moving b"); }

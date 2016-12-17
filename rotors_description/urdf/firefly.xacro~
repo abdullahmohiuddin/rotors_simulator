@@ -220,7 +220,7 @@
   <!-- This is to add the dummy link and joint for visual marker -->
     <joint name="camera_joint" type="fixed">
     <axis xyz="0 1 0" />
-    <origin xyz="-0.1 0 0.9" rpy="0 0 0"/>
+    <origin xyz="-0.1 0 0.0" rpy="0 0 0"/>
     <parent link="${namespace}/base_link"/>
     <child link="marker"/>
   </joint>

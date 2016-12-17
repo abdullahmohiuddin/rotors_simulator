@@ -33,14 +33,15 @@
 			    float xpose=0;	
 			    float zpose=0;
 				float refxpose=0.561942;
-			    float refzpose=0.0;	
-			    float refypose=-0.05;
+			    float refzpose=0.31;	
+			    float refypose=0.0;
                 float errypose=0;
 			    float errxpose=0;	
 			    float errzpose=0;
 			    float newposex=0;
 			    float newposey=0;	
 			    float newposez=0;
+			    bool attachstatus=false; 
  int gainxold=0;
  int gainyold=0;
      float mypositionx=0;
@@ -51,17 +52,17 @@
  // Below function is the call back of the subscription created by Qazi to recieve the visualization marker topic from arpose
 void chatterCallback(const visualization_msgs::Marker msg)
   {
-  		if (nameofuav=="a") {
+  		if (nameofuav=="h") {
   				if (ypose>4) {
      mypositionx=msg.pose.position.z;
-     mypositionz=msg.pose.position.x;
-     mypositiony=msg.pose.position.y; 
+     mypositionz=msg.pose.position.y;
+     mypositiony=msg.pose.position.x; 
      errxpose=(refxpose-mypositionx);
      errypose=(refypose-mypositiony);
-     errzpose=(refzpose-mypositionz);
+     errzpose=(mypositionz-refzpose);
      newposex=xpose-errxpose;
-     newposez=3;
-     newposey=ypose-errypose;
+     newposez=zpose-errzpose;
+     newposey=ypose+errypose;
      
      //newposez=zpose-errzpose; Need to fix the altitude following
 
@@ -81,8 +82,6 @@ void chatterCallback(const visualization_msgs::Marker msg)
             trajectory_pub.publish(trajectory_msg);
 }
       }
-      
-      
       }
    
    
@@ -255,11 +254,24 @@ gainxold=lee_position_controller_.controller_parameters_.position_gain_.x();
 gainyold=lee_position_controller_.controller_parameters_.position_gain_.y();
  // ROS_INFO("I am trying to turn the gain off for UAV b %f " ,ypose);
 // I am turing the gains off for the uav b when it is in position of transport to facilitate the mechanical 
+
+
+
+
 		if (nameofuav=="a") {
+		
+		if (attachstatus==false){
+if (zpose<0.3) {
+if (ypose<0.1){
+if (xpose<0.1){ 
+         popen("rosrun rotors_gazebo attach.py", "r");
+         attachstatus=true;
+         }}}}
+         
 		if (ypose>4) {
-//lee_position_controller_.controller_parameters_.position_gain_.x()=0;
-//lee_position_controller_.controller_parameters_.position_gain_.y()=0;
-  //ROS_INFO("I am trying to turn the gain off for UAV b ");
+lee_position_controller_.controller_parameters_.position_gain_.x()=0;
+lee_position_controller_.controller_parameters_.position_gain_.y()=0;
+ ROS_INFO("I am trying to turn the gain off for UAV b ");
 														}
 		if (ypose<4) {
 lee_position_controller_.controller_parameters_.position_gain_.x()=gainxold;

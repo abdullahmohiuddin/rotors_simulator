@@ -66,7 +66,7 @@ popen("rosrun rotors_gazebo spawn_models.py", "r");}
 
 
   // Motion sequence of the first UAV.
-		while (ii<7) {
+		while (ii<12) {
 		//ros::Duration(7).sleep();
 sleep(9);
 		 if (ii==2) {
@@ -101,12 +101,38 @@ sleep(2);
 					xx=0.02; yy=0 ; zz=3;
 }
 			if (ii==4) {
-					xx=0.02; yy=4 ; zz=3;
+					xx=0.02; yy=5 ; zz=3;
 }
+
+			if (ii==15) { 					
+     xx=1.02; yy=5 ; zz=3;
+}
+			if (ii==16) { 					
+     xx=2.02; yy=5 ; zz=3;
+}
+			if (ii==17) { 					
+     xx=2.02; yy=5.5 ; zz=3;
+}
+
+			if (ii==18) { 					
+     xx=2.02; yy=6 ; zz=3;
+}
+
+			if (ii==19) { 					
+     xx=2.02; yy=6.5 ; zz=3;
+}
+
+			if (ii==110) { 					
+     xx=2.02; yy=6.5 ; zz=2.5;
+}
+			if (ii==111) { 					
+     xx=2.02; yy=6.5 ; zz=2;
+}
+
 
 		ROS_INFO("Moving a"); }
 
-  // Motion sequence of the 2nd UAV.
+  // Motion sequence of the 2nd UAV
 
 		if (nameofuav=="b") { 
 		 if (ii==1) {
@@ -129,7 +155,22 @@ sleep(2);
      xx=3; yy=5 ; zz=3;
 }
 			if (ii==7) { 					
-     xx=3; yy=4 ; zz=3;
+     xx=3; yy=5.5 ; zz=3;
+}
+
+			if (ii==8) { 					
+     xx=3; yy=6 ; zz=3;
+}
+
+			if (ii==9) { 					
+     xx=3; yy=6.5 ; zz=3;
+}
+
+			if (ii==10) { 					
+     xx=3; yy=6.5 ; zz=2.5;
+}
+			if (ii==11) { 					
+     xx=3; yy=6.5 ; zz=2;
 }
 
 		ROS_INFO("Moving b"); }
